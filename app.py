@@ -2,6 +2,10 @@ import sys
 import cv2
 import numpy as np
 import mediapipe as mp
+import csv
+import datetime
+import pandas as pd
+import matplotlib.pyplot as plt
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -13,7 +17,7 @@ from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QPixmap, QImage
 import subprocess
 import pkg_resources
-required = {'opencv-python', 'numpy', 'mediapipe', 'selenium', 'PyQt5'}
+required = {'opencv-python', 'csv', 'datetime', 'pandas', 'matplotlib', 'numpy', 'mediapipe', 'selenium', 'PyQt5'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 
@@ -21,6 +25,76 @@ if missing:
     python = sys.executable
     subprocess.check_call([python, '-m', 'pip', 'install', *missing])
 
+# Fungsi untuk menyimpan prediksi ke file CSV
+def save_to_database(prediction):
+    filename = "mental_health_predictions.csv"
+    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open(filename, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([current_time, prediction])
+
+# Fungsi untuk menampilkan grafik monitoring prediksi mental health dan menghitung akurasi
+def show_graph(date_filter=None):
+    # Membaca data dari CSV
+    data = pd.read_csv("mental_health_predictions.csv", names=["Time", "Prediction"])
+    data["Time"] = pd.to_datetime(data["Time"])
+
+    if date_filter:
+        data = data[data["Time"].dt.date == date_filter]
+
+    # Mapping prediksi ke angka untuk grafik
+    predictions_map = {"Neutral": 0, "Fatigue Detected": 1, "Positive Mood": 2, "Stressed/Concerned": 3}
+    data["Prediction Value"] = data["Prediction"].map(predictions_map)
+
+    # Membuat grafik dengan warna berbeda untuk setiap prediksi
+    plt.figure(figsize=(12, 8))
+    colors = {'Neutral': 'blue', 'Fatigue Detected': 'red', 'Positive Mood': 'green', 'Stressed/Concerned': 'orange'}
+    for prediction, group_data in data.groupby("Prediction"):
+        plt.plot_date(group_data["Time"], group_data["Prediction Value"], linestyle='solid', marker='o', color=colors[prediction], label=prediction)
+
+    plt.xlabel("Time")
+    plt.ylabel("Prediction")
+    plt.title("Mental Health Prediction Monitoring")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.legend()
+
+    # Tampilkan grafik
+    plt.show()
+
+    # Menghitung akurasi prediksi
+    total_predictions = len(data)
+    correct_predictions = data["Prediction"].value_counts().max()
+    accuracy = (correct_predictions / total_predictions) * 100
+
+    print(f"Total Predictions: {total_predictions}")
+    print(f"Correct Predictions: {correct_predictions}")
+    print(f"Accuracy: {accuracy:.2f}%")
+
+    # Kesimpulan akhir prediksi emosi
+    final_prediction = data["Prediction"].iloc[-1]
+    print(f"Kesimpulan akhir prediksi emosi: {final_prediction}")
+
+    # Saran untuk mengatasi atau mengurangi emosi
+    suggestions = {
+        "Neutral": "Pertahankan kondisi Anda saat ini dan terus lakukan aktivitas yang positif.",
+        "Fatigue Detected": "Istirahat yang cukup, tidur yang berkualitas, dan hindari stres berlebihan.",
+        "Positive Mood": "Lanjutkan aktivitas yang membuat Anda bahagia dan berbagi kebahagiaan dengan orang lain.",
+        "Stressed/Concerned": "Lakukan relaksasi, meditasi, atau aktivitas yang menenangkan. Jangan ragu untuk mencari bantuan profesional jika diperlukan."
+    }
+    print(f"Saran: {suggestions.get(final_prediction, 'Tidak ada saran yang tersedia.')}")
+
+    # Grafik akurasi prediksi
+    plt.figure(figsize=(12, 8))
+    plt.plot(data["Time"], data["Prediction Value"], label="Detected Emotion", color='blue', linestyle='solid', marker='o')
+    plt.plot(data["Time"], data["Prediction Value"].rolling(window=10).mean(), label="Predicted Emotion", color='red', linestyle='dashed')
+    plt.xlabel("Time")
+    plt.ylabel("Prediction Value")
+    plt.title("Detected vs Predicted Emotion")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.legend()
+    plt.show()
 
 class SplashScreen(QMainWindow):
     def __init__(self):
@@ -125,6 +199,7 @@ class LoginWindow(QMainWindow):
         file_menu = menubar.addMenu('File')
         help_menu = menubar.addMenu('Help')
         about_menu = menubar.addMenu('About')
+        monitoring_menu = menubar.addMenu('Monitoring')
 
         exit_action = QAction('Exit', self)
         exit_action.triggered.connect(QApplication.instance().quit)
@@ -138,6 +213,10 @@ class LoginWindow(QMainWindow):
         about_action.triggered.connect(self.show_about)
         about_menu.addAction(about_action)
 
+        show_graph_action = QAction('Show Monitoring Graph', self)
+        show_graph_action.triggered.connect(self.show_graph)
+        monitoring_menu.addAction(show_graph_action)
+
         layout = QVBoxLayout()
         logo = QLabel()
         pixmap = QPixmap(r"C:\Users\asus\Downloads\layarui.png").scaledToWidth(self.width(), Qt.SmoothTransformation)
@@ -145,8 +224,8 @@ class LoginWindow(QMainWindow):
         logo.setAlignment(Qt.AlignCenter)
         layout.addWidget(logo)
         label = QLabel("Login to your account")
-        label.setAlignment(Qt.AlignCenter)
         layout.addWidget(label)
+        label.setAlignment(Qt.AlignCenter)
         self.username_input = QLineEdit()
         self.username_input.setPlaceholderText('Username')
         self.password_input = QLineEdit()
@@ -167,6 +246,10 @@ class LoginWindow(QMainWindow):
         container.setLayout(layout)
         self.setCentralWidget(container)
         self.driver = None
+
+    def show_graph(self):
+        # Panggil fungsi untuk menampilkan grafik
+        show_graph()
 
     def show_help(self):
         QMessageBox.information(self, "Help", "This is the help section.")
@@ -190,17 +273,41 @@ class LoginWindow(QMainWindow):
             self.start_analysis_button.setEnabled(True)
             self.login_button.setEnabled(False)
         else:
-            self.status_label.setText('Login failed. Please try again.')
-            self.driver.quit()
-            self.driver = None
+            self.status_label.setText('Login failed. Please check your credentials.')
+            self.status_label.setText('Login successful! You can now start the analysis.')
+            self.start_analysis_button.setEnabled(True)
+            self.login_button.setEnabled(False)
 
     def start_analysis(self):
         if self.driver:
             self.main_window = MentalHealthPredictor()
             self.main_window.show()
             self.hide()
+            self.monitor_instagram_posts()
         else:
             self.status_label.setText('Please login first')
+
+    def monitor_instagram_posts(self):
+        # Monitor Instagram posts and analyze user's emotion
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.check_posts)
+        self.timer.start(1000)  # Check every second
+
+    def check_posts(self):
+        self.driver.get('https://www.instagram.com/')
+        wait = WebDriverWait(self.driver, 10)
+        posts = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'article div div div div a')))
+        for post in posts:
+            post.click()
+            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.C4VMK span')))
+            self.main_window.update_frame()
+            self.driver.back()
+            # Check the latest prediction
+            latest_prediction = self.main_window.prediction_label.text().split(': ')[-1]
+            if latest_prediction in ["Fatigue Detected", "Stressed/Concerned"]:
+                self.driver.quit()
+                QMessageBox.warning(self, "Warning", "Detected mental health issue. Instagram will be closed.")
+                break
 
     def closeEvent(self, event):
         if self.driver:
@@ -268,12 +375,13 @@ class MentalHealthPredictor(QWidget):
                         connection_drawing_spec=self.drawing_spec)
                     mental_state = self.analyze_mental_state(face_landmarks, frame.shape)
                     self.prediction_label.setText(f'Mental State: {mental_state}')
+                    save_to_database(mental_state)
             rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             h, w, ch = rgb_frame.shape
             bytes_per_line = ch * w
             qt_image = QImage(rgb_frame.data, w, h, bytes_per_line, QImage.Format_RGB888)
             self.image_label.setPixmap(QPixmap.fromImage(qt_image))
-
+        
     def analyze_mental_state(self, landmarks, frame_shape):
         height, width = frame_shape[:2]
         points = np.array([(lm.x * width, lm.y * height) for lm in landmarks.landmark])
@@ -288,6 +396,7 @@ class MentalHealthPredictor(QWidget):
             return "Stressed/Concerned"
         else:
             return "Neutral"
+    
 
     def calculate_eye_ratio(self, points):
         left_eye = [33, 160, 158, 133, 153, 144]
