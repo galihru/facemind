@@ -31,5 +31,6 @@ jobs:
         
       - name: Run tests
         run: |
-          pytest --maxfail=1 --disable-warnings -q  # Adjust pytest options as needed
+          pytest app.py --maxfail=1 --disable-warnings -q
+
 
