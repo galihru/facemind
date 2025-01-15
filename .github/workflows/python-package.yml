@@ -31,6 +31,6 @@ jobs:
         
       - name: Run tests
         run: |
-          pytest test_facemind.py --maxfail=1 --disable-warnings -q
+          pytest tests/test_facemind.py --maxfail=1 --disable-warnings -q
 
 
