@@ -2,7 +2,7 @@
     "name": "FcaeMind",
     "short_name": "Face Mind",
     "description": "Application uses computer vision and machine learning to analyze mental health based on facial expressions. The app includes login system, and real-time mental health analysis through facial landmarks, using OpenCV, Mediapipe, and PyQt5. This Application Delegation Paper Competition for",
-    "start_url": "./index.html",
+    "start_url": "./facemind",
     "display": "standalone",
     "orientation": "portrait",
     "background_color": "#fff",
