@@ -29,13 +29,15 @@
             "src": "802x600.png",
             "sizes": "802x630",
             "type": "image/png",
-            "form_factor": "wide"
+            "platform": "android",
+            "label": "Dashboard view displaying FaceMind App"
         },
         {
             "src": "796x626.png",
             "sizes": "796x626",
             "type": "image/png",
-            "form_factor": "narrow"
+            "platform": "andorid",
+            "label": "Emotional analysis based on face recognition"
         }
     ],
     "manifest_version": 3,
