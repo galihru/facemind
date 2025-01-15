@@ -1,61 +1,62 @@
-import numpy as np
-from selenium import webdriver
+class BEMIter:
+    """
+    Base class for iterative BEM solvers.
+    """
+    
+    def __init__(self, solver='gmres', tol=1e-4, maxit=200, restart=None, precond='hmat', output=0):
+        self.solver = solver   # iterative solver, 'cgs', 'bicgstab', or 'gmres'
+        self.tol = tol         # tolerance
+        self.maxit = maxit     # maximum number of iterations
+        self.restart = restart # restart for GMRES solver
+        self.precond = precond # preconditioner for iterative solver
+        self.output = output   # intermediate output for iterative solver
+        
+        # Protected properties
+        self._flag = None      # flag from iterative routine
+        self._relres = None    # relative residual error
+        self._iter = None      # number of iterations
+        self._eneisav = None   # previously computed wavelengths
+        self._stat = None      # statistics for H-matrices
+        self._timer = None     # timer statistics
 
-class MentalStateAnalyzer:
-    def __init__(self):
-        # Initialize the web driver for selenium if needed
-        self.driver = webdriver.Chrome()
-
-    def calculate_eye_ratio(self, points):
-        """Calculate the average eye aspect ratio for both eyes."""
-        left_eye = [33, 160, 158, 133, 153, 144]
-        right_eye = [362, 385, 387, 263, 373, 380]
-        left_eye_points = points[left_eye]
-        right_eye_points = points[right_eye]
-
-        def eye_aspect_ratio(eye_points):
-            vertical_dist = np.linalg.norm(eye_points[1] - eye_points[5]) + \
-                            np.linalg.norm(eye_points[2] - eye_points[4])
-            horizontal_dist = np.linalg.norm(eye_points[0] - eye_points[3])
-            return vertical_dist / (2.0 * horizontal_dist)
-
-        left_ratio = eye_aspect_ratio(left_eye_points)
-        right_ratio = eye_aspect_ratio(right_eye_points)
-        return (left_ratio + right_ratio) / 2.0
-
-    def calculate_mouth_ratio(self, points):
-        """Calculate the mouth aspect ratio based on given points."""
-        mouth = [78, 95, 88, 178, 87, 14]
-        vertical_dist = np.linalg.norm(points[13] - points[14])  # Upper to lower lip
-        horizontal_dist = np.linalg.norm(points[78] - points[95])  # Mouth width
-        return vertical_dist / horizontal_dist
-
-    def calculate_brow_ratio(self, points):
-        """Calculate the ratio of brow to eye center distance."""
-        brow = [70, 105, 107, 336, 296, 334]
-        eye_top = np.mean(points[brow], axis=0)  # Average brow position
-        eye_center = np.mean(points[33:133], axis=0)  # Average eye center position
-        vertical_dist = np.linalg.norm(eye_top - eye_center)
-        return vertical_dist
-
-    def analyze_mental_state(self, points):
-        """Analyze mental state based on facial landmarks."""
-        eye_ratio = self.calculate_eye_ratio(points)
-        mouth_ratio = self.calculate_mouth_ratio(points)
-        brow_ratio = self.calculate_brow_ratio(points)
-
-        # Example conditions for mental state analysis
-        if eye_ratio < 0.2 and mouth_ratio > 0.5:
-            return "Tired or Sleepy"
-        elif brow_ratio > 0.3:
-            return "Surprised"
+    def info(self):
+        """
+        INFO - Get information for iterative solver.
+        
+        Usage for obj = BEMIter:
+            obj.info()                            -  print statistics
+            flag, relres, iter = obj.info()       -  get statistics
+        
+        Output:
+            flag       :  convergence flag
+            relres     :  relative residual norm
+            iter       :  outer and inner iteration numbers
+        """
+        flag, relres, iter = self._flag, self._relres, self._iter
+        
+        if flag is None or relres is None or iter is None:
+            return None
+        
+        if not hasattr(self, '_printstat'):
+            raise NotImplementedError("The method '_printstat' is not implemented.")
+        
+        if not hasattr(self, '_output') or self._output == 0:
+            for f, r, i in zip(flag, relres, iter):
+                self._printstat(f, r, i)
         else:
-            return "Neutral"
+            return flag, relres, iter
 
+    def _printstat(self, flag, relres, iter):
+        """
+        Placeholder for the printstat method implementation.
+        """
+        print(f"Flag: {flag}, Relative Residual: {relres}, Iterations: {iter}")
 
-# Example usage with pytest:
-# Create sample points array for testing
-sample_points = np.random.rand(500, 2)  # 500 random points for illustration
-analyzer = MentalStateAnalyzer()
-result = analyzer.analyze_mental_state(sample_points)
-print(result)
+# Example usage:
+# bem_iter = BEMIter()
+# bem_iter._flag = [0, 1]
+# bem_iter._relres = [0.001, 0.002]
+# bem_iter._iter = [(10, 5), (20, 10)]
+# bem_iter.info()
+# flag, relres, iter = bem_iter.info()
+# print(flag, relres, iter)
