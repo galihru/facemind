@@ -26,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip freeze > requirements.txt
           pip install -r requirements.txt  # If you have a requirements file
-          pip install pytest  # Directly install pytest or any other dependencies
+          pip install opencv-python numpy mediapipe selenium PyQt5 pytest
 
         
       - name: Run tests
