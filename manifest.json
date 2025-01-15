@@ -38,7 +38,7 @@
             "src": "799x595.png",
             "sizes": "799x595",
             "type": "image/png",
-            "platform": "android",
+            "form_factor": "wide",
             "label": "Splash Screen view displaying FaceMind App"
         },
         {
