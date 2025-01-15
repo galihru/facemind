@@ -31,7 +31,7 @@
             "src": "796x626.png",
             "sizes": "796x626",
             "type": "image/png",
-            "form_factor": "narrow",
+            "form_factor": "wide",
             "label": "Emotional analysis based on face recognition"
         },
         {
