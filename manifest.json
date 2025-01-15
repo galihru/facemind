@@ -42,6 +42,20 @@
             "label": "Emotional analysis based on face recognition"
         }
     ],
+    "shortcuts": [
+      {
+        "name": "Download Apps",
+        "short_name": "Download Apps",
+        "description": "Download Apps Face Mind",
+        "url": "https://github.com/4211421036/facemind/releases/download/v1.1/facemind.exe",
+        "icons": [
+          {
+            "src": "192x192px.png",
+            "sizes": "192x192"
+            }
+        ]
+      }
+    ],
     "manifest_version": 3,
     "version": "1.0.0",
     "author": "GALIH RIDHO UTOMO",
