@@ -151,6 +151,9 @@
                     font-size: 20px;
                     margin: 10px 0;
                 }
+                a {
+                    text-decoration: none;
+                }
 
                 .modal button {
                     width: 100%;
@@ -232,7 +235,11 @@
             <img alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection"
                 src="./logofm.png" style="width: inherit; background: white; border-radius: 15px;" />
             <h2>Install Application</h2>
-            <button type="button" id="confirmInstall" href="https://github.com/4211421036/facemind/releases/download/v1.0/facemind.exe">Yes, Install</button>
+            <button type="button" id="confirmInstall">
+                <a href="https://github.com/4211421036/facemind/releases/download/v1.0/facemind.exe" download="facemind.exe" style="text-decoration: none; color: white; width: 100%; padding: 15px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer;">
+                    Yes, Install
+                </a>
+            </button>
             <button type="button" id="cancelInstall">Cancel</button>
         </div>
     </div>
