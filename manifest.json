@@ -61,7 +61,7 @@
         "name": "Download Apps",
         "short_name": "Download Apps",
         "description": "Download Apps Face Mind",
-        "url": "/download.html",
+        "url": "./download.html",
         "icons": [
           {
             "src": "192x192px.png",
