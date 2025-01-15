@@ -17,5 +17,37 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ]
+    ],
+     "screenshots": [
+        {
+            "src": "799x595.png",
+            "sizes": "799x595",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "802x600.png",
+            "sizes": "802x600",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "796x626.png",
+            "sizes": "796x626",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ],
+    "manifest_version": 3,
+    "version": "1.0.0",
+    "author": "GALIH RIDHO UTOMO",
+    "editor": "GALIH RIDHO UTOMO",
+    "scope": "/",
+    "display_override": [
+        "window-control-overlay",
+        "minimal-ui"
+    ],
+    "edgesidepanel": {
+        "preferredwidth": 748
+    }
 }
