@@ -28,9 +28,6 @@ async function generateHtml() {
   // Generate nonce untuk setiap elemen
   const nonce = generateNonce();
 
-  // Path untuk file JavaScript
-  const jsFiles = ['p5.js', 'main.js', 'firework.js'];
-
   // CSP yang diperbaiki dengan strict-dynamic
   const cspContent = [
     `style-src 'self' 'nonce-${nonce}' https://4211421036.github.io`,
@@ -73,15 +70,6 @@ async function generateHtml() {
       <meta property="og:audio:type" content="audio/mpeg" />
       <meta http-equiv="Content-Security-Policy" content="${cspContent}">
   `;
-
-  // Menambahkan file JavaScript dengan atribut integrity dan crossorigin
-  jsFiles.forEach(file => {
-    const filePath = path.join(process.cwd(), file);
-    const integrityHash = generateIntegrityHash(filePath);
-    htmlContent += `
-        <script src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></script>
-    `;
-  });
 
   // Menambahkan style inline dengan nonce
   htmlContent += `
