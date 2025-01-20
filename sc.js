@@ -35,7 +35,7 @@ async function generateHtml() {
     "base-uri 'self'",
     "img-src 'self' data: https://4211421036.github.io",
     "default-src 'self' https://4211421036.github.io",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'sha384-${generateIntegrityHash(path.join(process.cwd(), jsFiles[0]))}' https://4211421036.github.io`,
+    `script-src 'self' 'nonce-${nonce}' 'unsafe-inline' 'sha384-${generateIntegrityHash(path.join(process.cwd(), jsFiles[0]))}' https://4211421036.github.io`,
     "font-src 'self' https://4211421036.github.io",
     "media-src 'self' https://4211421036.github.io",
     "connect-src 'self' https://4211421036.github.io",
