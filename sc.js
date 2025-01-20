@@ -29,7 +29,7 @@ async function generateHtml() {
   const nonce = generateNonce();
 
   // Path untuk file JavaScript
-  const jsFiles = ['inst.js', 'dfs.js'];
+  const jsFiles = ['inst.js'];
 
   // CSP yang diperbaiki dengan strict-dynamic
   const cspContent = [
