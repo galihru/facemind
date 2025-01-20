@@ -35,7 +35,8 @@ jobs:
 
       # Pull the latest changes from the remote repository
       - name: Pull latest changes
-        run: git pull origin main
+        run: |
+          git pull origin main --rebase
 
       # Push the changes back to the repository
       - name: Push changes
