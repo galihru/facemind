@@ -86,7 +86,7 @@ async function generateHtml() {
       </div>
       <div class=modal id=swipeableModal>
         <div class=modal-content>
-          <div class=swipe-indicator></div><img alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection" src=./logofm.png style=width:inherit;background:#fff;border-radius:15px>
+          <div class=swipe-indicator></div><img alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection" src=./logofm.png>
           <h2>Install Application</h2><button type=button id=confirmInstall><a download=facemind.exe href=https://github.com/4211421036/facemind/releases/download/v1.1/facemind.exe style=text-decoration:none;color:#fff;width:100%;padding:15px;border:none;border-radius:25px;font-size:16px;cursor:pointer>Yes, Install</a></button><button type=button id=cancelInstall>Cancel</button>
         </div>
       </div>
@@ -95,6 +95,13 @@ async function generateHtml() {
         window.close()
       }
     </script>
+    <style nonce="${nonce}">
+        img {
+          width: inherit;
+          background: #fff;
+          border-radius: 15px;
+        }
+    </style>
     <script nonce="${nonce}" src=""></script>
     <script nonce="${nonce}" src=""></script>
     <!-- page generated automatic: ${getCurrentTime()} -->
