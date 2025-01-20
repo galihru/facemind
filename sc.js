@@ -71,7 +71,16 @@ async function generateHtml() {
       <meta property="og:image:alt" content="Facemind" />
       <meta property="og:type" content="website" />
       <meta property="og:audio:type" content="audio/mpeg" />
-      <meta http-equiv="Content-Security-Policy" content="${cspContent}">
+      <meta http-equiv="Content-Security-Policy" content="${cspContent}">`;
+      jsFiles.forEach(file => {
+        const filePath = path.join(process.cwd(), file);
+        const integrityHash = generateIntegrityHash(filePath);
+        htmlContent += `
+            <style src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></style>
+            <script src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></script>
+        `;
+      });
+  htmlContent += `
       <style nonce="${nonce}">
           body {
               margin: 0;
@@ -281,15 +290,6 @@ async function generateHtml() {
     <!-- page generated automatic: ${getCurrentTime()} -->
     </body>
   </html>`;
-
-  jsFiles.forEach(file => {
-    const filePath = path.join(process.cwd(), file);
-    const integrityHash = generateIntegrityHash(filePath);
-    htmlContent += `
-        <style src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></style>
-        <script src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></script>
-    `;
-  });
 
   try {
     // Minify HTML yang dihasilkan
