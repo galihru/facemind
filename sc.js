@@ -30,7 +30,6 @@ async function generateHtml() {
 
   const jsFiles = ['st.js', 'dfs.js'];
 
-  // CSP yang diperbaiki dengan strict-dynamic
   const cspContent = [
     `style-src 'self' 'nonce-${nonce}' https://4211421036.github.io`,
     "object-src 'none'",
