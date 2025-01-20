@@ -29,7 +29,7 @@ async function generateHtml() {
   const nonce = generateNonce();
 
   // Path untuk file JavaScript
-  const jsFiles = ['inst.js'];
+  const jsFiles = ['inst.js', 'sty.css];
 
   // CSP yang diperbaiki dengan strict-dynamic
   const cspContent = [
@@ -100,7 +100,6 @@ async function generateHtml() {
             <button type="button" id="cancelInstall">Cancel</button>
         </div>
     </div>
-    <style nonce="${nonce}" src="sty.css"></style>
     <!-- page generated automatic: ${getCurrentTime()} -->
     </body>
   </html>`;
@@ -109,6 +108,7 @@ async function generateHtml() {
     const filePath = path.join(process.cwd(), file);
     const integrityHash = generateIntegrityHash(filePath);
     htmlContent += `
+        <style src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></style>
         <script src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></script>
     `;
   });
