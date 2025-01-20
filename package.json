@@ -1,7 +1,7 @@
 {
-  "name": "hbd",
+  "name": "Facemind",
   "version": "1.0.0",
-  "description": "Selamat Ulang Tahun!",
+  "description": "Facemind",
   "main": "sc.js",
   "scripts": {
     "start": "node sc.js"
