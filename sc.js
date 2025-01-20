@@ -33,7 +33,7 @@ async function generateHtml() {
 
   // CSP yang diperbaiki dengan strict-dynamic
   const cspContent = [
-    `style-src 'self' 'nonce-${nonce}' 'unsafe-inline' 'sha384-${generateIntegrityHash(path.join(process.cwd(), jsFiles[0]))}' https://4211421036.github.io`,
+    `style-src 'self' 'nonce-${nonce}' https://4211421036.github.io`,
     "object-src 'none'",
     "base-uri 'self'",
     "img-src 'self' data: https://4211421036.github.io",
@@ -72,14 +72,13 @@ async function generateHtml() {
       <meta property="og:type" content="website" />
       <meta property="og:audio:type" content="audio/mpeg" />
       <meta http-equiv="Content-Security-Policy" content="${cspContent}">`;
-      jsFiles.forEach(file => {
-        const filePath = path.join(process.cwd(), file);
-        const integrityHash = generateIntegrityHash(filePath);
-        htmlContent += `
-            <style src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></style>
-            <script src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></script>
-        `;
-      });
+  jsFiles.forEach(file => {
+    const filePath = path.join(process.cwd(), file);
+    const integrityHash = generateIntegrityHash(filePath);
+    htmlContent += `
+        <script src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></script>
+    `;
+  });
   htmlContent += `
       <style nonce="${nonce}">
           body {
