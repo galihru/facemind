@@ -2,7 +2,7 @@ name: Update HTML with Dynamic Nonce
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # Menjalankan setiap 1 menit, sesuaikan dengan kebutuhan Anda.
+    - cron: '*/5 * * * *' # Runs every 5 minutes, adjust as needed.
   push:
     branches:
       - main
@@ -34,5 +34,11 @@ jobs:
         # Stage all modified files
         git add .
         
-        git commit -m "Update index.html with dynamic nonce"
+        # Commit changes
+        git commit -m "Update index.html with dynamic nonce" || echo "No changes to commit"
+        
+        # Pull remote changes to avoid conflicts
+        git pull --rebase origin main
+        
+        # Push changes to the remote repository
         git push
