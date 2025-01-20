@@ -1,0 +1,38 @@
+name: Auto Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      # Set up Git configuration (user info)
+      - name: Set up Git config
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+        
+      # Install dependencies if needed (if your project uses npm, yarn, etc.)
+      - name: Install dependencies
+        run: npm install
+
+      # Stage changes (e.g., package-lock.json)
+      - name: Stage changes
+        run: git add .
+
+      # Commit the changes if there are any changes to commit
+      - name: Commit changes
+        run: |
+          git commit -m "Automatic deployment commit" || echo "No changes to commit"
+        continue-on-error: true  # In case there's nothing to commit, continue without error
+
+      # Push the changes back to the repository
+      - name: Push changes
+        run: git push origin main
