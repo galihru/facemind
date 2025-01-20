@@ -75,26 +75,32 @@ async function generateHtml() {
       <meta http-equiv="Content-Security-Policy" content="${cspContent}">
     </head>
     <body>
-      <div class=container>
-        <div class=header-image><img alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection" src=./layarui.png></div>
-        <div class=content>
-          <h2>Face Mind</h2>
-          <h3>Face the Future of Mental Health</h3>
-          <p>Solution Application based on Computer Vision, and Integrated with Instagram Apps</p><button type=button id=installButton class=start-checkin>Install Application</button><button type=button class=later onclick=closeTab()>Later</button>
+    <div class="container">
+        <div class="header-image">
+            <img alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection"
+                src="./layarui.png" />
         </div>
-        <p class=note>Note that you won't be able to proceed to the next touch session unless you complete the check-in
-      </div>
-      <div class=modal id=swipeableModal>
-        <div class=modal-content>
-          <div class=swipe-indicator></div><img alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection" src=./logofm.png>
-          <h2>Install Application</h2><button type=button id=confirmInstall><a download=facemind.exe href=https://github.com/4211421036/facemind/releases/download/v1.1/facemind.exe style=text-decoration:none;color:#fff;width:100%;padding:15px;border:none;border-radius:25px;font-size:16px;cursor:pointer>Yes, Install</a></button><button type=button id=cancelInstall>Cancel</button>
+        <div class="content">
+            <h2>Face Mind</h2>
+            <h3>Face the Future of Mental Health</h3>
+            <p>Solution Application based on Computer Vision, and Integrated with Instagram Apps</p>
+            <button type="button" class="start-checkin" id="installButton">Install Application</button>
+            <button type="button" class="later">Later</button>
         </div>
-      </div>
-      <script>
-      function closeTab() {
-        window.close()
-      }
-    </script>
+        <p class="note">Note that you won't be able to proceed to the next touch session unless you complete the
+            check-in</p>
+    </div>
+    <div class="modal" id="swipeableModal">
+        <div class="modal-content">
+            <!-- Swipeable indicator -->
+            <div class="swipe-indicator"></div>
+            <img alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection"
+                src="./logofm.png" style="width: inherit; background: white; border-radius: 15px;" />
+            <h2>Install Application</h2>
+            <button type="button" id="confirmInstall">Yes, Install</button>
+            <button type="button" id="cancelInstall">Cancel</button>
+        </div>
+    </div>
     <style nonce="${nonce}">
         body {
             margin: 0;
