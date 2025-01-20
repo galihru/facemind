@@ -115,7 +115,7 @@ async function generateHtml() {
         const currentY = e.touches[0].clientY;
         const diffY = currentY - startY;
         if (diffY > 0) {
-          modal.querySelector('.modal-content').style.transform = ``translateY(${diffY}px)``
+          modal.querySelector('.modal-content').style.transform = 'translateY(${diffY}px)'
         }
       });
       modal.addEventListener('touchend', function(e) {
