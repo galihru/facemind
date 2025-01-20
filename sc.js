@@ -33,7 +33,7 @@ async function generateHtml() {
 
   // CSP yang diperbaiki dengan strict-dynamic
   const cspContent = [
-    `style-src 'self' 'unsafe-inline' 'nonce-${nonce}' https://4211421036.github.io`,
+    `style-src 'self' 'nonce-${nonce}' https://4211421036.github.io`,
     "object-src 'none'",
     "base-uri 'self'",
     "img-src 'self' data: https://4211421036.github.io",
@@ -47,7 +47,7 @@ async function generateHtml() {
     "worker-src 'self' blob: https://4211421036.github.io"
   ].join('; ');
 
-jsFiles.forEach(file => {
+  jsFiles.forEach(file => {
     const filePath = path.join(process.cwd(), file);
     const integrityHash = generateIntegrityHash(filePath);
     htmlContent += `
