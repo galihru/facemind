@@ -1,10 +1,12 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+name: Deploy Jekyll to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
+  schedule:
+    - cron: '*/5 * * * *'  # This runs every 5 minutes
   push:
-    branches: ["main"]
+    branches:
+      - main  # Ensures the action is triggered when pushing to the main branch
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -33,8 +35,8 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./
-          destination: ./_site
+          source: ./  # Root of the repository
+          destination: ./_site  # Destination folder for the built site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
@@ -44,8 +46,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: build  # This ensures the deploy job will only run after the build job finishes
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Using the default GitHub token for authentication
