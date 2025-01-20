@@ -10,6 +10,7 @@ function generateNonce() {
 }
 
 // Fungsi untuk menghitung hash file untuk SRI
+// Fungsi untuk menghitung hash file untuk SRI
 function generateIntegrityHash(filePath) {
   const fileBuffer = fs.readFileSync(filePath);
   const hash = crypto.createHash('sha384');
@@ -26,16 +27,18 @@ function getCurrentTime() {
 async function generateHtml() {
   // Generate nonce untuk setiap elemen
   const nonce = generateNonce();
+
+  // Path untuk file JavaScript
   const jsFiles = ['inst.js', 'dfs.js'];
 
-  // CSP yang diperbaiki dengan strict-dynamic dan nonces
+  // CSP yang diperbaiki dengan strict-dynamic
   const cspContent = [
-    `style-src 'unsafe-inline' 'nonce-${nonce}' https://4211421036.github.io`,
+    `style-src 'self' 'nonce-${nonce}' https://4211421036.github.io`,
     "object-src 'none'",
     "base-uri 'self'",
     "img-src 'self' data: https://4211421036.github.io",
     "default-src 'self' https://4211421036.github.io",
-    `script-src 'self' 'nonce-${nonce}' 'unsafe-inline' 'sha384-${generateIntegrityHash(path.join(process.cwd(), jsFiles[0]))}' https://4211421036.github.io`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' 'sha384-${generateIntegrityHash(path.join(process.cwd(), jsFiles[0]))}' https://4211421036.github.io`,
     "font-src 'self' https://4211421036.github.io",
     "media-src 'self' https://4211421036.github.io",
     "connect-src 'self' https://4211421036.github.io",
@@ -43,6 +46,7 @@ async function generateHtml() {
     "manifest-src 'self' https://4211421036.github.io",
     "worker-src 'self' blob: https://4211421036.github.io"
   ].join('; ');
+
 
   let htmlContent = `<!DOCTYPE html>
   <html lang="en">
