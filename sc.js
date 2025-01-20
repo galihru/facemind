@@ -253,7 +253,7 @@ async function generateHtml() {
               overflow: hidden;
           }
           img {
-            width: inherit;
+            width: unset;
             background: #fff;
             border-radius: 15px;
           }
