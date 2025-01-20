@@ -285,8 +285,6 @@ async function generateHtml() {
           border-radius: 15px;
         }
     </style>
-    <script nonce="${nonce}" src=""></script>
-    <script nonce="${nonce}" src=""></script>
     <!-- page generated automatic: ${getCurrentTime()} -->
     </body>
   </html>`;
