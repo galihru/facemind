@@ -20,6 +20,9 @@ jobs:
       with:
         node-version: '16'
 
+    - name: Clean previous installations
+      run: rm -rf node_modules package-lock.json
+    
     - name: Install dependencies
       run: npm install
 
