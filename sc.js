@@ -47,7 +47,13 @@ async function generateHtml() {
     "worker-src 'self' blob: https://4211421036.github.io"
   ].join('; ');
 
-
+jsFiles.forEach(file => {
+    const filePath = path.join(process.cwd(), file);
+    const integrityHash = generateIntegrityHash(filePath);
+    htmlContent += `
+        <script src="${file}" nonce="${nonce}" integrity="sha384-${integrityHash}" crossorigin="anonymous"></script>
+    `;
+  });
   let htmlContent = `<!DOCTYPE html>
   <html lang="en">
     <head>
