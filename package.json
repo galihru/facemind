@@ -1,0 +1,17 @@
+{
+  "name": "hbd",
+  "version": "1.0.0",
+  "description": "Selamat Ulang Tahun!",
+  "main": "sc.js",
+  "scripts": {
+    "start": "node sc.js"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "html-minifier": "^4.0.0",
+    "terser": "^5.37.0"
+  },
+  "author": "Galih Ridho Utomo",
+  "license": "MIT",
+  "type": "module"
+}
