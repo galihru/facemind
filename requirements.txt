@@ -1,0 +1,7 @@
+opencv-python
+numpy
+pandas
+matplotlib
+mediapipe
+selenium
+PyQt5
