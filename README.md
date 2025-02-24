@@ -16,6 +16,10 @@ Before running the app, make sure you have the following Python packages install
 
 You can install missing dependencies by running the following command:
 
+```bash
+docker pull ghcr.io/4211421036/mental_health_app:latest
+```
+
 ## Author by
 1. Ana Maulida
 2. GALIH RIDHO UTOMO
