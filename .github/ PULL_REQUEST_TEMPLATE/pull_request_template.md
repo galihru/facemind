@@ -6,19 +6,19 @@ Please provide a concise explanation of the modification being implemented, alon
 
 Please specify the nature of the change you are implementing. (Exclude superfluous options.)
 
-- [ ] The implementation of bug fixes, otherwise referred to as non-breaking changes, is intended to address issues in a manner that is both expeditious and effective.
-- [ ] New features are non-breaking changes that add functionality.
-- [ ] The term "breaking changes" refers to alterations in software or programming that result in alterations to the compatibility of the software or programming with other software or programming.
-- [ ] Documentation Improvement
+- [x] The implementation of bug fixes, otherwise referred to as non-breaking changes, is intended to address issues in a manner that is both expeditious and effective.
+- [x] New features are non-breaking changes that add functionality.
+- [x] The term "breaking changes" refers to alterations in software or programming that result in alterations to the compatibility of the software or programming with other software or programming.
+- [x] Documentation Improvement
 - [ ] Other (specify below)
 
 ## Checklist
 
-- [ ] I have read and understood [CONTRIBUTING.md](CONTRIBUTING.md).
-- [ ] To ensure the code's integrity, I have executed the `pre-commit` script, which scans all files and verifies their compliance with established standards.
-- [ ] In order to ensure the integrity of the modifications, relevant tests have been incorporated into the changes.
-- [ ] The documentation has been updated as necessary.
-- [ ] The test was executed successfully with `pytest`.
+- [x] I have read and understood [CONTRIBUTING.md](CONTRIBUTING.md).
+- [x] To ensure the code's integrity, I have executed the `pre-commit` script, which scans all files and verifies their compliance with established standards.
+- [x] In order to ensure the integrity of the modifications, relevant tests have been incorporated into the changes.
+- [x] The documentation has been updated as necessary.
+- [x] The test was executed successfully with `pytest`.
 
 ## Additional Information
 
