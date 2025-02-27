@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mental_health_app"
+authors = [
+    {name = "GALIH RIDHO UTOMO", email = "g4lihru@students.unnes.ac.id"},
+    {name = "Ana Maulida", email = "anamaulida@students.unnes.ac.id"},
+]
+
+[project.urls]
+Documentation = "https://github.com/4211421036/facemind/README.md"
+Source = "https://github.com/4211421036/facemind"
+Homepage = "https://4211421036.github.io/facemind/"
