@@ -1,5 +1,5 @@
 # Mental Health App
-![KSKI Logo](https://github.com/4211421036/facemind/blob/b81ff48dcda3c8029aac38ee8c36f9cb99546db3/logofm.png)
+<img src="https://4211421036.github.io/facemind/logofm.png" alt="logo facemind">
 
 
 This application uses computer vision and machine learning to analyze mental health based on facial expressions. The app includes login system, and real-time mental health analysis through facial landmarks, using OpenCV, Mediapipe, and PyQt5.
