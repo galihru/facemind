@@ -201,6 +201,7 @@ async function generateHtml() {
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
             position: relative;
             transition: transform 0.3s ease;
+            transform: translateY(0)
         }
 
         .modal h2 {
@@ -249,6 +250,27 @@ async function generateHtml() {
             width: inherit; 
             background: white; 
             border-radius: 15px;
+        }
+
+        .translate-drag {
+          transition: none;
+          transform: translateY(var(--dragY, 0));
+        }
+      
+        .translate-hide {
+          transform: translateY(100%);
+        }
+      
+        .translate-reset {
+          transform: translateY(0);
+        }
+      
+        .modal-open {
+          overflow: hidden;
+        }
+      
+        .show {
+          display: block; /* Sesuaikan dengan style modal Anda */
         }
     </style>
     </head>
