@@ -28,7 +28,7 @@ async function generateHtml() {
   // Generate nonce untuk setiap elemen
   const nonce = generateNonce();
 
-  const jsFiles = ['dfs.js'];
+  const jsFiles = ['jws.js','dfs.js'];
 
   const cspContent = [
     `default-src 'self' https://4211421036.github.io`,
