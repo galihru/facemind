@@ -82,9 +82,17 @@ async function generateHtml() {
   htmlContent += `
     <style nonce="${nonce}">
         body {
-          margin: 0;
-          overflow: hidden;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1A1A3D;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
         }
+
         .container {
             text-align: center;
             max-width: 400px;
@@ -109,13 +117,11 @@ async function generateHtml() {
         .content h2 {
             margin: 10px 0;
             font-size: 24px;
-            color: white;
         }
 
         .content p {
             font-size: 16px;
             margin: 10px 0;
-            color: white;
         }
 
         button {
@@ -170,13 +176,9 @@ async function generateHtml() {
             transform: translateY(1px);
         }
 
-        h2 h3 p {
-            color: white;
-        }
-
         .note {
             font-size: 12px;
-            color: #5a5858;
+            color: #B0B0B0;
             margin-top: 10px;
         }
 
@@ -207,12 +209,14 @@ async function generateHtml() {
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
             position: relative;
             transition: transform 0.3s ease;
-            transform: translateY(0)
         }
 
         .modal h2 {
             font-size: 20px;
             margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
         }
 
         .modal button {
