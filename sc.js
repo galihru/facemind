@@ -49,9 +49,9 @@ async function generateHtml() {
   <html lang="en">
     <head>
       <title>Facemind</title>
-      <meta content="width=device-width,initial-scale=1" name=viewport>
+      <meta content="width=device-width,initial-scale=1" name="viewport">
       <meta content="Application uses computer vision and machine learning to analyze mental health based on facial expressions. The app includes login system, and real-time mental health analysis through facial landmarks, using OpenCV, Mediapipe, and PyQt5. This Application Delegation Paper Competition for" name=description>
-      <meta content="GALIH RIDHO UTOMO; Ana Maulida" name=author>
+      <meta content="GALIH RIDHO UTOMO; Ana Maulida" name="author">
       <link href=./logo.ico rel=icon type=image/x-icon>
       <link href=./manifest.json rel=manifest crossorigin=use-credentials>
       <meta charset=UTF-8>
