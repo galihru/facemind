@@ -31,12 +31,12 @@ async function generateHtml() {
   const jsFiles = ['st.js', 'dfs.js'];
 
   const cspContent = [
+    `default-src 'self' https://4211421036.github.io`,
+    `script-src 'self' 'nonce-${nonce}' https://4211421036.github.io`,
     `style-src 'self' 'nonce-${nonce}' https://4211421036.github.io`,
     "object-src 'none'",
     "base-uri 'self'",
     "img-src 'self' data: https://4211421036.github.io",
-    "default-src 'self' https://4211421036.github.io",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-inline' 'sha384-${generateIntegrityHash(path.join(process.cwd(), jsFiles[0]))}' https://4211421036.github.io`,
     "font-src 'self' https://4211421036.github.io",
     "media-src 'self' https://4211421036.github.io",
     "connect-src 'self' https://4211421036.github.io",
@@ -80,7 +80,7 @@ async function generateHtml() {
     `;
   });
   htmlContent += `
-    <style nonce="nonce-${nonce}">
+    <style nonce="${nonce}">
         body {
           margin: 0;
           overflow: hidden;
