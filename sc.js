@@ -291,7 +291,8 @@ async function generateHtml() {
     });
 
     // Tentukan path untuk file HTML yang akan dihasilkan
-    const outputPath = path.join(process.cwd(), 'index.html');
+    const outputPath = path.resolve(process.env.GITHUB_WORKSPACE, 'index.html');
+    //const outputPath = path.join(process.cwd(), 'index.html');
 
     // Simpan HTML yang telah di-minify ke file
     fs.writeFileSync(outputPath, minifiedHtml);
