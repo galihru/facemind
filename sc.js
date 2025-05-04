@@ -109,11 +109,13 @@ async function generateHtml() {
         .content h2 {
             margin: 10px 0;
             font-size: 24px;
+            color: white;
         }
 
         .content p {
             font-size: 16px;
             margin: 10px 0;
+            color: white;
         }
 
         button {
@@ -168,7 +170,7 @@ async function generateHtml() {
             transform: translateY(1px);
         }
 
-        h2, h3, p {
+        h2 h3 p {
             color: white;
         }
 
