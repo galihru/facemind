@@ -1,53 +1,63 @@
 const installButton = document.getElementById('installButton');
 const modal = document.getElementById('swipeableModal');
 const cancelInstall = document.getElementById('cancelInstall');
+const modalContent = modal.querySelector('.modal-content');
 let startY;
 
-// Open the modal when the "Install Application" button is clicked
+// Open the modal
 installButton.onclick = function () {
     modal.classList.add('show');
-    document.body.classList.add('modal-open'); // Lock scroll
-}
+    document.body.classList.add('modal-open');
+    modalContent.classList.add('translate-reset');
+};
 
-// Close the modal when the "Cancel" button is clicked
+// Close button
 cancelInstall.onclick = function () {
     closeModal();
-}
+};
 
-// Swipe to close functionality
+// Swipe start
 modal.addEventListener('touchstart', function (e) {
     startY = e.touches[0].clientY;
 });
 
+// Swipe move
 modal.addEventListener('touchmove', function (e) {
     const currentY = e.touches[0].clientY;
     const diffY = currentY - startY;
-    // Move modal while swiping
+
     if (diffY > 0) {
-        modal.querySelector('.modal-content').style.transform = `translateY(${diffY}px)`;
+        modalContent.classList.add('translate-drag');
+        modalContent.style.setProperty('--dragY', `${diffY}px`);
     }
 });
 
+// Swipe end
 modal.addEventListener('touchend', function (e) {
     const endY = e.changedTouches[0].clientY;
     const diffY = endY - startY;
 
-    // If the swipe is long enough (e.g. more than 100px), close the modal
+    modalContent.classList.remove('translate-drag');
+
     if (diffY > 100) {
         closeModal();
     } else {
-        // Otherwise, reset the position of the modal
-        modal.querySelector('.modal-content').style.transform = 'translateY(0)';
+        // Reset translate if not enough swipe
+        modalContent.classList.add('translate-reset');
+        modalContent.style.setProperty('--dragY', `0px`);
     }
 });
 
+// Close with animation
 function closeModal() {
-    // Animate modal closing by translating it down
-    modal.querySelector('.modal-content').style.transform = 'translateY(100%)';
+    modalContent.classList.remove('translate-reset', 'translate-drag');
+    modalContent.classList.add('translate-hide');
+
     setTimeout(() => {
         modal.classList.remove('show');
-        document.body.classList.remove('modal-open'); // Unlock scroll
-        // Reset transform after modal is fully hidden
-        modal.querySelector('.modal-content').style.transform = 'translateY(0)';
-    }, 300); // Match the transition duration
+        document.body.classList.remove('modal-open');
+        modalContent.classList.remove('translate-hide');
+        modalContent.classList.add('translate-reset');
+        modalContent.style.removeProperty('--dragY');
+    }, 300);
 }
