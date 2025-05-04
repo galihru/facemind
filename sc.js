@@ -291,7 +291,7 @@ async function generateHtml() {
             <h3>Face the Future of Mental Health</h3>
             <p>Solution Application based on Computer Vision, and Integrated with Instagram Apps</p>
             <button type="button" class="start-checkin" id="installButton">Install Application</button>
-            <button type="button" class="later">Later</button>
+            <button type="button" class="later" onclick="closeTab()">Close Apps</button>
         </div>
         <p class="note">Note that you won't be able to proceed to the next touch session unless you complete the
             check-in</p>
