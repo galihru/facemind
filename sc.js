@@ -168,9 +168,13 @@ async function generateHtml() {
             transform: translateY(1px);
         }
 
+        h2, h3, p {
+            color: white;
+        }
+
         .note {
             font-size: 12px;
-            color: #B0B0B0;
+            color: #5a5858;
             margin-top: 10px;
         }
 
