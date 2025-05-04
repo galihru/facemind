@@ -80,7 +80,7 @@ async function generateHtml() {
     `;
   });
   htmlContent += `
-    <style nonce="${nonce}">
+    <style nonce="nonce-${nonce}">
         body {
           margin: 0;
           overflow: hidden;
