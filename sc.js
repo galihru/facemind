@@ -244,6 +244,12 @@ async function generateHtml() {
         body.modal-open {
             overflow: hidden;
         }
+
+        .imh {
+            width: inherit; 
+            background: white; 
+            border-radius: 15px;
+        }
     </style>
     </head>
     <body>
@@ -268,8 +274,8 @@ async function generateHtml() {
         <div class="modal-content">
             <!-- Swipeable indicator -->
             <div class="swipe-indicator"></div>
-            <img alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection"
-                src="./logofm.png" style="width: inherit; background: white; border-radius: 15px;" />
+            <img class="imh" alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection"
+                src="./logofm.png" />
             <h2>Install Application</h2>
             <button type="button" id="confirmInstall">Yes, Install</button>
             <button type="button" id="cancelInstall">Cancel</button>
