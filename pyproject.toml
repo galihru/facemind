@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mental_health_app"
-version = "0.2"
+version = "0.3"
 authors = [
     {name = "GALIH RIDHO UTOMO", email = "g4lihru@students.unnes.ac.id"},
     {name = "Ana Maulida", email = "anamaulida@students.unnes.ac.id"},
