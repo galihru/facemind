@@ -4,12 +4,33 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mental_health_app"
+version = "0.2"
 authors = [
     {name = "GALIH RIDHO UTOMO", email = "g4lihru@students.unnes.ac.id"},
     {name = "Ana Maulida", email = "anamaulida@students.unnes.ac.id"},
+]
+description = "A mental health prediction app using facial analysis."
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "opencv-python",
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "mediapipe",
+    "selenium",
+    "PyQt5",
 ]
 
 [project.urls]
 Documentation = "https://github.com/4211421036/facemind/README.md"
 Source = "https://github.com/4211421036/facemind"
 Homepage = "https://4211421036.github.io/facemind/"
+
+[project.scripts]
+mental_health_app = "mental_health_app.main:main"
