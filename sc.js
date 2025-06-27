@@ -62,8 +62,8 @@ async function generateHtml() {
       <meta property="og:url" content="https://4211421036.github.io/facemind">
       <meta property="og:image" content="https://4211421036.github.io/facemind/192x192px.png">
       <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:title" content="Selamat Ulang Tahun!">
-      <meta name="twitter:description" content="Selamat Ulang Tahun!">
+      <meta name="twitter:title" content="Facemind - Mental Health Analysis">
+      <meta name="twitter:description" content="Application uses computer vision and machine learning to analyze mental health based on facial expressions.">
       <meta property="og:locale" content="id" />
       <meta name="twitter:image" content="https://4211421036.github.io/facemind/192x192px.png">
       <meta property="og:image:alt" content="Facemind" />
@@ -307,7 +307,7 @@ async function generateHtml() {
             <!-- Swipeable indicator -->
             <div class="swipe-indicator"></div>
             <img class="imh" alt="Illustration of a head with a plant growing from it, symbolizing growth and reflection"
-                src="./logofm.png" />
+                src="./192x192px.png" />
             <h2>Install Application</h2>
             <button type="button" id="confirmInstall">Yes, Install</button>
             <button type="button" id="cancelInstall">Cancel</button>
@@ -329,7 +329,7 @@ async function generateHtml() {
     });
 
     // Tentukan path untuk file HTML yang akan dihasilkan
-    const outputPath = path.resolve(process.env.GITHUB_WORKSPACE, 'index.html');
+    const outputPath = path.join(process.cwd(), 'index.html');
     //const outputPath = path.join(process.cwd(), 'index.html');
 
     // Simpan HTML yang telah di-minify ke file
