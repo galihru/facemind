@@ -104,13 +104,15 @@ class SplashScreen(QMainWindow):
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
         layout = QVBoxLayout()
         logo = QLabel()
-        pixmap = QPixmap(r"C:\Users\asus\Downloads\logofm.png").scaled(400, 136, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        pixmap = QPixmap("logofm.png").scaled(400, 136, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         logo.setPixmap(pixmap)
         logo.setAlignment(Qt.AlignCenter)
         label = QLabel("Welcome to Mental Health App")
         label.setAlignment(Qt.AlignCenter)
         layout.addStretch()
         layout.addWidget(logo)
+        layout.addWidget(label)
+        layout.addStretch()
         container = QWidget()
         container.setObjectName("container")
         container.setLayout(layout)
@@ -120,21 +122,6 @@ class SplashScreen(QMainWindow):
                 background-color: white;
             }
         """)
-        layout.addStretch()
-        self.setCentralWidget(container)
-        layout = QVBoxLayout()
-        logo = QLabel()
-        pixmap = QPixmap(r"C:\Users\asus\Downloads\logofm.png").scaled(400, 136, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-        logo.setPixmap(pixmap)
-        logo.setAlignment(Qt.AlignCenter)
-        label = QLabel("Welcome to Mental Health App")
-        label.setAlignment(Qt.AlignCenter)
-        layout.addStretch()
-        layout.addWidget(logo)
-        container = QWidget()
-        container.setObjectName("container")
-        container.setLayout(layout)
-        layout.addStretch()
         self.setCentralWidget(container)
 
     def showSplash(self):
@@ -219,7 +206,7 @@ class LoginWindow(QMainWindow):
 
         layout = QVBoxLayout()
         logo = QLabel()
-        pixmap = QPixmap(r"C:\Users\asus\Downloads\layarui.png").scaledToWidth(self.width(), Qt.SmoothTransformation)
+        pixmap = QPixmap("layarui.png").scaledToWidth(self.width(), Qt.SmoothTransformation)
         logo.setPixmap(pixmap)
         logo.setAlignment(Qt.AlignCenter)
         layout.addWidget(logo)
@@ -274,9 +261,6 @@ class LoginWindow(QMainWindow):
             self.login_button.setEnabled(False)
         else:
             self.status_label.setText('Login failed. Please check your credentials.')
-            self.status_label.setText('Login successful! You can now start the analysis.')
-            self.start_analysis_button.setEnabled(True)
-            self.login_button.setEnabled(False)
 
     def start_analysis(self):
         if self.driver:
