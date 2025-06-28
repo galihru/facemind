@@ -31,6 +31,6 @@ jobs:
         
       - name: Run tests
         run: |
-          pytest tests/test_facemind.py --maxfail=1 --disable-warnings -q
+          pytest mental_health_app/main.py --maxfail=1 --disable-warnings -q
 
 
