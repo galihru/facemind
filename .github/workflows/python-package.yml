@@ -25,8 +25,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip freeze > requirements.txt
-          pip install -r requirements.txt  # If you have a requirements file
-          pip install opencv-python numpy mediapipe pandas selenium PyQt5 pytest
+          pip install -r mental_health_app/requirements.txt  # If you have a requirements file
 
         
       - name: Run tests
