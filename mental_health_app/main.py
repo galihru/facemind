@@ -17,7 +17,7 @@ from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QPixmap, QImage
 import subprocess
 import pkg_resources
-required = {'opencv-python', 'csv', 'datetime', 'pandas', 'matplotlib', 'numpy', 'mediapipe', 'selenium', 'PyQt5'}
+required = {'opencv-python', 'pandas', 'matplotlib', 'numpy', 'mediapipe', 'selenium', 'PyQt5'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 
