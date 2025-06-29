@@ -1,7 +1,7 @@
 {
   "name": "Facemind",
   "version": "1.0.0",
-  "description": "Facemind",
+  "description": "Facemind Mental Health",
   "main": "sc.js",
   "scripts": {
     "start": "node sc.js"
