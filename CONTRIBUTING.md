@@ -10,7 +10,7 @@ to the public under the [project's open source license](LICENSE).
 1. [Fork](https://github.com/4211421036/facemind/fork) and clone the repository
 2. Configure and install the dependencies: `yarn install`
 3. Create a new branch: `git checkout -b my-branch-name`
-4. Make your changes
+4. Make your change
 5. Make sure the tests pass: `docker buildx bake test`
 6. Format code and build javascript artifacts: `docker buildx bake pre-checkin`
 7. Validate all code has correctly formatted and built: `docker buildx bake validate`
