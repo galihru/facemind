@@ -1,5 +1,4 @@
 # Dockerfile
-# Gunakan image Python resmi sebagai base image
 FROM python:3.9-slim
 
 # Set working directory di dalam container
