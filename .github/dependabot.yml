@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "pypi"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Maksimum pull request terbuka sekaligus
+    open-pull-requests-limit: 5
+    # Anda bisa menambahkan kriteria ignore jika ingin melewatkan versi tertentu, misalkan:
+    # ignore:
+    #   - dependency-name: "glob"
+    #     versions: ["<9.0.0"]
