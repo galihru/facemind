@@ -25,7 +25,6 @@ if missing:
     python = sys.executable
     subprocess.check_call([python, '-m', 'pip', 'install', *missing])
 
-# Fungsi untuk menyimpan prediksi ke file CSV
 def save_to_database(prediction):
     filename = "mental_health_predictions.csv"
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
