@@ -10,7 +10,6 @@ adafruit-circuitpython-mcp230xx==2.5.12
 adafruit-circuitpython-requests==2.0.2
 adafruit-circuitpython-typing==1.9.5
 Adafruit-GPIO==1.0.3
-pandas
 Adafruit-PlatformDetect==3.53.0
 Adafruit-PureIO==1.1.11
 affine==2.4.0
