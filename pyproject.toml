@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mental_health_app"
-version = "0.4"
+version = "0.5"
 authors = [
     {name = "GALIH RIDHO UTOMO", email = "g4lihru@students.unnes.ac.id"},
     {name = "Ana Maulida", email = "anamaulida@students.unnes.ac.id"},
@@ -28,9 +28,9 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/4211421036/facemind/README.md"
-Source = "https://github.com/4211421036/facemind"
-Homepage = "https://4211421036.github.io/facemind/"
+Documentation = "https://github.com/galihru/facemind/README.md"
+Source = "https://github.com/galihru/facemind"
+Homepage = "https://galihru.github.io/facemind/"
 
 [project.scripts]
 mental_health_app = "mental_health_app.main:main"
