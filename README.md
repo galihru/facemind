@@ -22,6 +22,7 @@ Before running the app, make sure you have the following Python packages install
 - `mediapipe`
 - `selenium`
 - `PyQt5`
+- `pandas`
 
 You can install missing dependencies by running the following command:
 
