@@ -5,3 +5,4 @@ matplotlib
 mediapipe
 selenium
 PyQt5
+pytest
