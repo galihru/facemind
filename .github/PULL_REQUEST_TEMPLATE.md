@@ -2,7 +2,7 @@
 
 Please provide a concise explanation of the modification being implemented, along with a rationale justifying its necessity and the manner in which it addresses the identified issue.
 
-## Nature of Change
+## Nature of Changes
 
 Please specify the nature of the change you are implementing. (Exclude superfluous options.)
 
