@@ -32,7 +32,6 @@ def save_to_database(prediction):
         writer = csv.writer(file)
         writer.writerow([current_time, prediction])
 
-# Fungsi untuk menampilkan grafik monitoring prediksi mental health dan menghitung akurasi
 def show_graph(date_filter=None):
     # Membaca data dari CSV
     data = pd.read_csv("mental_health_predictions.csv", names=["Time", "Prediction"])
