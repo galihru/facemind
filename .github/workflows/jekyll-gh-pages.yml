@@ -42,7 +42,7 @@ jobs:
   # Deployment job
   deploy:
     environment:
-      name: github-pages
+      name: Download Apps
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build  # This ensures the deploy job will only run after the build job finishes
