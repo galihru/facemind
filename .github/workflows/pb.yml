@@ -65,7 +65,7 @@ jobs:
         run: |
           python -m twine upload --skip-existing dist/*
 
-      - name: Update Deployment Status
+      - name: Update Deployments Status
         uses: actions/github-script@v7
         with:
           script: |
