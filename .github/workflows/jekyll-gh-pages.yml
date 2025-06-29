@@ -1,7 +1,6 @@
 name: Deploy Jekyll to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   schedule:
     - cron: '*/5 * * * *'  # This runs every 5 minutes
   push:
