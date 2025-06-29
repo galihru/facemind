@@ -5,3 +5,4 @@ numpy
 mediapipe
 selenium
 PyQt5
+pytest-qt
