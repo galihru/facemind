@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('swipeableModal');
     const cancelInstall = document.getElementById('cancelInstall');
 
-    // Cek apakah modal ada
     if (!modal) {
         console.error('Element with id "swipeableModal" not found.');
         return;
